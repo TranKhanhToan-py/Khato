@@ -9,6 +9,7 @@ import platform
 import argparse
 import json
 import sys
+from time import sleep
 from typing import Dict, Optional
 
 COMMON_TOOLS = [
@@ -39,6 +40,8 @@ PKG_NAME_MAP = {
     "nc": "netcat",
     "netcat": "netcat",
     "masscan": "masscan",
+    "ssh2john": "john",
+    "gobuster": "gobuster",
 }
 
 VERSION_FLAGS = ["--version", "-V", "-v", "version", "-h", "--help"]
@@ -220,6 +223,42 @@ def check_operating_system_and_version():
         print("Vui long su dung Python 3.12 de chay chuong trinh nay!")
         sys.exit(0)
 
+def check_lib():
+    while True:
+        try:
+            from colorama import init, Fore, Style
+            init(autoreset=True)
+            print("Ok.")
+            break
+        except ModuleNotFoundError:
+            print("Download Fail, Retrying...")
+            sleep(2)
+            os.system("pip install -r requirements.txt")
+
 def full_check():
+    print("Checking operating system and Python version...")
     check_operating_system_and_version()
+    print("Starting tool check and installation process...")
     check()
+    print("Checking required libraries...")
+    check_lib()
+
+def inchu():
+    chu = r""" 
+    __  __ _             _____
+    | |/ /| |__    __ _ |_   _|  ___
+    | ' / | '_ \  / _` |  | |   / _ \
+    | . \ | | | || (_| |  | |  | (_) |
+    |_|\_\|_| |_| \__,_|  |_|   \___/
+"""
+    print(Fore.MAGENTA + chu + Fore.RESET)
+
+def menu():
+    print(Fore.CYAN + "Các chức năng trong chuong trình phiên bản này:" + Fore.RESET)
+    print(Fore.CYAN + "=" * 105 + Fore.RESET)
+    print(Fore.CYAN + "|| 1. Quét cổng mở (web hoặc thiết bị) ||")
+    print()
+
+if __name__ == "__main__":
+    full_check()
+    menu()
