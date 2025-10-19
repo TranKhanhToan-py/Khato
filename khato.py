@@ -253,11 +253,115 @@ def inchu():
 """
     print(Fore.MAGENTA + chu + Fore.RESET)
 
-def menu():
-    print(Fore.CYAN + "Các chức năng trong chuong trình phiên bản này:" + Fore.RESET)
-    print(Fore.CYAN + "=" * 75 + Fore.RESET)
-    print(Fore.CYAN + "|| 1. Quét cổng mở (web hoặc thiết bị)                                   ||")
-    print()
+def chuc_nang(chuc_nang):
+    if chuc_nang == 1:
+        while True:
+            try:
+                os.system("clear")
+                inchu()
+                print("\n\nCác chức năng trong mục Website: ")
+                print(Fore.CYAN + "=" * 75 + Fore.RESET)
+                print(Fore.CYAN + "|| 1. Kiểm tra thông tin website                                             ||")
+                print(Fore.CYAN + "|| 2. Quét cổng mở của website                                               ||")
+                print(Fore.CYAN + "|| 3. Quét lỗ hổng máy chủ                                                   ||")
+                print(Fore.CYAN + "|| 4. Quét lỗ hổng website                                                   ||")
+                print(Fore.CYAN + "|| 99. Quay lại menu chính                                                   ||")
+                print(Fore.CYAN + "=" * 75 + Fore.RESET)
+                choice = int(input("Chọn chức năng: "))
+                chuc_nang_1(choice)
+            except KeyboardInterrupt:
+                print(Fore.RED + "\nĐã thoát chức năng Website" + Fore.RESET)
+                sleep(0.8)
+                return
+            except ValueError:
+                print(Fore.YELLOW + "Đầu vào phải là số" + Fore.RESET)
+                sleep(0.8)
+    elif chuc_nang == 2:
+        while True:
+            try:
+                os.system("clear")
+                inchu()
+                print("\n\nCác chức năng trong mục WiFi - Network: ")
+                print(Fore.CYAN + "=" * 75 + Fore.RESET)
+                print(Fore.CYAN + "|| 1. Quét các IP trong mạng LAN (có thể quét cổng mở của thiết bị)                     ||")
+                print(Fore.CYAN + "|| 2. Bắt gói tin WiFi                                                                  ||")
+                print(Fore.CYAN + "|| 3. Bẻ khóa mật khẩu WiFi WPA/WPA2                                                    ||")
+                print(Fore.CYAN + "|| 4. Bẻ khóa mật khẩu WiFi WPS                                                         ||")
+                print(Fore.CYAN + "|| 99. Quay lại menu chính                                                              ||")
+                print(Fore.CYAN + "=" * 75 + Fore.RESET)
+                choice = int(input("Chọn chức năng: "))
+                chuc_nang_2(choice)
+            except KeyboardInterrupt:
+                print(Fore.RED + "\nĐã thoát chức năng WiFi - Network" + Fore.RESET)
+                sleep(0.8)
+                return
+            except ValueError:
+                print(Fore.YELLOW + "Đầu vào phải là số" + Fore.RESET)
+                sleep(0.8)
+    elif chuc_nang == 3:
+        print("Chức năng đang được phát triển...")
 
+def chuc_nang_1(chuc_nang):
+    if not chuc_nang in [1, 2, 3, 99]:
+        print(Fore.YELLOW + "Vui lòng chọn các chức năng có trong danh sách." + Fore.RESET)
+        sleep(0.8)
+        chuc_nang(1)
+    elif chuc_nang == 1:
+        pass
+    elif chuc_nang == 2:
+        pass
+    elif chuc_nang == 3:
+        pass
+    elif chuc_nang == 99:
+        menu()
+
+def chuc_nang_2(chuc_nang):
+    if not chuc_nang in [1, 2, 3, 4, 99]:
+        print(Fore.YELLOW + "Vui lòng chọn các chức năng có trong danh sách." + Fore.RESET)
+        sleep(0.8)
+        chuc_nang(2)
+    elif chuc_nang == 1:
+        pass
+    elif chuc_nang == 2:
+        pass
+    elif chuc_nang == 3:
+        pass
+    elif chuc_nang == 4:
+        pass
+    elif chuc_nang == 99:
+        menu()
+    
+def menu():
+    while True:
+        try:
+            os.system("clear")
+            inchu()
+            print(Fore.CYAN + "\n\nCác chức năng trong chương trình phiên bản này:" + Fore.RESET)
+            print(Fore.CYAN + "=" * 75 + Fore.RESET)
+            print(Fore.CYAN + "|| 1. Website                                                            ||")
+            print(Fore.CYAN + "|| 2. WiFi - Network                                                     ||")
+            print(Fore.CYAN + "|| 3. Malware                                                            ||")
+            print(Fore.CYAN + "|| 99. Exit                                                              ||")
+            print(Fore.CYAN + "=" * 75 + Fore.RESET)
+            chuc_nang = int(input("Chọn chức năng: "))
+            if chuc_nang == 1:
+                chuc_nang(1)
+            elif chuc_nang == 2:
+                chuc_nang(2)
+            elif chuc_nang == 3:
+                chuc_nang(3)
+            elif chuc_nang == 99:
+                print(Fore.RED + "Đã thoát chương trình" + Fore.RESET)
+                sys.exit(0)
+            else:
+                print(Fore.YELLOW + "Vui lòng chọn các chức năng có trong danh sách." + Fore.RESET)
+                sleep(0.8)
+        except KeyboardInterrupt:
+            os.system("pip uninstall -r requirements.txt") if (input("Bạn có muốn xóa hết thư viện vừa cài không? (y / n) : ").strip().lower() == "y") else (print("Đang thoát..."))
+            print(Fore.RED + "\nĐã thoát chương trình" + Fore.RESET)
+            sys.exit(0)
+        except ValueError:
+            print(Fore.YELLOW + "Đầu vào phải là số" + Fore.RESET)
+            sleep(0.8)
 if __name__ == "__main__":
     menu()
