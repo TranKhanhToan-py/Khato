@@ -287,6 +287,8 @@ def chuc_nang(chuc_nang):
                 print(Fore.CYAN + "|| 2. Bắt gói tin WiFi                                                                  ||")
                 print(Fore.CYAN + "|| 3. Bẻ khóa mật khẩu WiFi WPA/WPA2                                                    ||")
                 print(Fore.CYAN + "|| 4. Bẻ khóa mật khẩu WiFi WPS                                                         ||")
+                print(Fore.CYAN + "|| 5. Tấn công DoS vào mạng WiFi                                                        ||")
+                print(Fore.CYAN + "|| 6. Giả mạo điểm truy cập WiFi (Evil Twin)                                            ||")
                 print(Fore.CYAN + "|| 99. Quay lại menu chính                                                              ||")
                 print(Fore.CYAN + "=" * 75 + Fore.RESET)
                 choice = int(input("Chọn chức năng: "))
@@ -327,6 +329,10 @@ def chuc_nang_2(chuc_nang):
     elif chuc_nang == 3:
         pass
     elif chuc_nang == 4:
+        pass
+    elif chuc_nang == 5:
+        pass 
+    elif chuc_nang == 6:
         pass
     elif chuc_nang == 99:
         menu()
