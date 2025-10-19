@@ -12,6 +12,19 @@ import sys
 from time import sleep
 from typing import Dict, Optional
 
+def check_lib():
+    while True: 
+        try:
+            os.system("pip install -r requirements.txt")
+            break
+        except ModuleNotFoundError:
+            print("Download Fail, Retrying...")
+            sleep(2)
+            os.system("pip install -r requirements.txt")
+
+from colorama import Fore, Style, init
+init(autoreset=True)
+
 COMMON_TOOLS = [
     "nmap",
     "hydra",
@@ -223,25 +236,12 @@ def check_operating_system_and_version():
         print("Vui long su dung Python 3.12 de chay chuong trinh nay!")
         sys.exit(0)
 
-def check_lib():
-    while True:
-        try:
-            from colorama import init, Fore, Style
-            init(autoreset=True)
-            print("Ok.")
-            break
-        except ModuleNotFoundError:
-            print("Download Fail, Retrying...")
-            sleep(2)
-            os.system("pip install -r requirements.txt")
-
-def full_check():
-    print("Checking operating system and Python version...")
-    check_operating_system_and_version()
-    print("Starting tool check and installation process...")
-    check()
-    print("Checking required libraries...")
-    check_lib()
+print("Checking operating system and Python version...")
+check_operating_system_and_version()
+print("Starting tool check and installation process...")
+check()
+print("Checking required libraries...")
+check_lib()
 
 def inchu():
     chu = r""" 
@@ -255,10 +255,9 @@ def inchu():
 
 def menu():
     print(Fore.CYAN + "Các chức năng trong chuong trình phiên bản này:" + Fore.RESET)
-    print(Fore.CYAN + "=" * 105 + Fore.RESET)
-    print(Fore.CYAN + "|| 1. Quét cổng mở (web hoặc thiết bị) ||")
+    print(Fore.CYAN + "=" * 75 + Fore.RESET)
+    print(Fore.CYAN + "|| 1. Quét cổng mở (web hoặc thiết bị)                                   ||")
     print()
 
 if __name__ == "__main__":
-    full_check()
     menu()
